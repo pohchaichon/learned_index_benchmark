@@ -18,9 +18,6 @@
 [submodule "src/competitor/pgm/src"]
 	path = src/competitor/pgm/src
 	url = https://github.com/gvinciguerra/PGM-index.git
-[submodule "src/competitor/alex/src"]
-	path = src/competitor/alex/src
-	url = https://github.com/microsoft/ALEX.git
 [submodule "src/competitor/btree/src"]
 	path = src/competitor/btree/src
 	url = https://github.com/bingmann/stx-btree.git
@@ -33,3 +30,6 @@
 [submodule "src/competitor/hot/src"]
 	path = src/competitor/hot/src
 	url = https://github.com/speedskater/hot.git
+[submodule "src/competitor/alex/src"]
+	path = src/competitor/alex/src
+	url = https://github.com/yeojin5/ALEX_.git
