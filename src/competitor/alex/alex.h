@@ -8,7 +8,7 @@ class alexInterface : public indexInterface<KEY_TYPE, PAYLOAD_TYPE> {
 
 	void bulk_load(std::pair <KEY_TYPE, PAYLOAD_TYPE> *key_value, size_t num, Param *param = nullptr);
 
-	bool get(KEY_TYPE key, PAYLOAD_TYPE &val, Param *param = nullptr, BStat *bstat = nullptr);
+	bool get(KEY_TYPE key, PAYLOAD_TYPE &val, Param *param = nullptr);
 
 	bool put(KEY_TYPE key, PAYLOAD_TYPE value, Param *param = nullptr);
 
