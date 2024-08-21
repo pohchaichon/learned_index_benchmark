@@ -5,18 +5,7 @@
 struct Param { // for xindex
   size_t worker_num;
   uint32_t thread_id;
-  /*-------------measure search time-----------------*/
-  struct SearchStat {
-	using std::chrono::steady_clock::time_point = tp;
-	tp *sp; // start point
-	tp *ep; // end point
-	tp *ssp; // scan start point
-	tp *sep; // scan end point
-	std::pair <tp,tp> *lookup_time;
-	std::pair <tp,tp> *search_time;
-    } sstat;
-
-  Param(size_t worker_num, uint32_t thread_id, struct SearchStat) : worker_num(worker_num), thread_id(thread_id), SearchStat(sstat) {}
+  Param(size_t worker_num, uint32_t thread_id) : worker_num(worker_num), thread_id(thread_id) {}
 };
 
 struct BaseCompare {
