@@ -20,6 +20,8 @@ class alexInterface : public indexInterface<KEY_TYPE, PAYLOAD_TYPE> {
 		Param *param = nullptr);
 
 	long long memory_consumption() { return index.model_size() + index.data_size(); }
+	// yj
+	void get_stat();
 
     private:
 	alex::Alex<KEY_TYPE, PAYLOAD_TYPE, alex::AlexCompare, std::allocator < std::pair < KEY_TYPE, PAYLOAD_TYPE>>, false>
@@ -35,11 +37,21 @@ void alexInterface<KEY_TYPE, PAYLOAD_TYPE>::bulk_load(std::pair <KEY_TYPE, PAYLO
 template<class KEY_TYPE, class PAYLOAD_TYPE>
 bool alexInterface<KEY_TYPE, PAYLOAD_TYPE>::get(KEY_TYPE key, PAYLOAD_TYPE &val, Param *param) {
     PAYLOAD_TYPE *res = index.get_payload(key);
+    
+    // index.bstat.calculate_point();
+    // index.bstat.print_stat();
+
     if (res != nullptr) {
 	val = *res;
 	return true;
     }
     return false;
+}
+// yj
+template<class KEY_TYPE, class PAYLOAD_TYPE>
+void alexInterface<KEY_TYPE,PAYLOAD_TYPE>::get_stat(){
+    index.bstat.calculate_point();
+    index.bstat.print_stat();
 }
 
 template<class KEY_TYPE, class PAYLOAD_TYPE>
