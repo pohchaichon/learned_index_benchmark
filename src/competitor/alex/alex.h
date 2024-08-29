@@ -21,7 +21,8 @@ class alexInterface : public indexInterface<KEY_TYPE, PAYLOAD_TYPE> {
 
 	long long memory_consumption() { return index.model_size() + index.data_size(); }
 	// yj
-	void get_stat();
+	typedef std::chrono::nanoseconds nano;
+	void get_yj_stat(nano leaf, nano fk, nano pred, nano search);
 
     private:
 	alex::Alex<KEY_TYPE, PAYLOAD_TYPE, alex::AlexCompare, std::allocator < std::pair < KEY_TYPE, PAYLOAD_TYPE>>, false>
@@ -49,11 +50,28 @@ bool alexInterface<KEY_TYPE, PAYLOAD_TYPE>::get(KEY_TYPE key, PAYLOAD_TYPE &val,
 }
 // yj
 template<class KEY_TYPE, class PAYLOAD_TYPE>
-void alexInterface<KEY_TYPE,PAYLOAD_TYPE>::get_stat(){
+void alexInterface<KEY_TYPE,PAYLOAD_TYPE>::yj_stat_calc(){
     index.bstat.calculate_point();
-    index.bstat.print_stat();
 }
-
+// yj
+template<class KEY_TYPE, class PAYLOAD_TYPE>
+nano alexInterface<KEY_TYPE,PAYLOAD_TYPE>::yj_stat_leaf(nano leaf_){
+    return index.bstat.leaf
+}
+// yj
+template<class KEY_TYPE, class PAYLOAD_TYPE>
+nano alexInterface<KEY_TYPE,PAYLOAD_TYPE>::yj_stat_fk(){
+    return index.bstat.fk
+}
+// yj
+template<class KEY_TYPE, class PAYLOAD_TYPE>
+nano alexInterface<KEY_TYPE,PAYLOAD_TYPE>::yj_stat_pred(){
+    return index.bstat.pred
+}// yj
+template<class KEY_TYPE, class PAYLOAD_TYPE>
+nano alexInterface<KEY_TYPE,PAYLOAD_TYPE>::yj_stat_search(){
+    return index.bstat.search
+}
 template<class KEY_TYPE, class PAYLOAD_TYPE>
 bool alexInterface<KEY_TYPE, PAYLOAD_TYPE>::put(KEY_TYPE key, PAYLOAD_TYPE value, Param *param) {
     return index.insert(key, value).second;
